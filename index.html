@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B班 海遊館</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            height: 100vh;
+        }
+        .left {
+            flex: 2.37;
+            background-color: #f5f5f5;
+            background-image: url('https://i.gyazo.com/f2fa1813e743dd394f2ae0bd94df1a5e.jpg');
+            background-size: contain;
+            background-position: top;
+            background-repeat: no-repeat;
+        }
+        .right {
+            flex: 1;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: auto;
+        }
+        .right a {
+            display: block;
+            margin: 0;
+            position: relative;
+            cursor: pointer;
+        }
+        .right .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            z-index: 1;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .right .overlay.active {
+            opacity: 1;
+            z-index: 2;
+        }
+        .right img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="left" id="leftContainer"></div>
+    <div class="right">
+        <!-- 右側のトップ -->
+        <a href="https://gyazo.com/92b48eee1b947fc4336a42482095f033">
+            <img src="https://i.gyazo.com/92b48eee1b947fc4336a42482095f033.jpg" alt="右側のトップ" />
+        </a>
+
+        <!-- 編集中皆森と編集外皆森 -->
+        <a onclick="toggleOverlay(this, '皆森')">
+            <img src="https://i.gyazo.com/deaf722653f23a74cb189ec33a53e5a0.jpg" alt="編集外皆森" />
+            <img src="https://i.gyazo.com/97ad6748c9ec57bb2f750a7186adcb93.jpg" alt="編集中皆森" class="overlay" />
+        </a>
+
+        <!-- 編集中1と編集外1 -->
+        <a onclick="toggleOverlay(this, '1')">
+            <img src="https://i.gyazo.com/0ca0f061ead4a25d9e9751eec178a744.jpg" alt="編集外1" />
+            <img src="https://i.gyazo.com/7d37c0680f14c420016d73014046c157.jpg" alt="編集中1" class="overlay" />
+        </a>
+
+        <!-- 編集中2と編集外2 -->
+        <a onclick="toggleOverlay(this, '2')">
+            <img src="https://i.gyazo.com/02d4dbbbc32a1e385d479ea42816a414.jpg" alt="編集外2" />
+            <img src="https://i.gyazo.com/788ce2fbb4e9f46211ca12e27d083488.jpg" alt="編集中2" class="overlay" />
+        </a>
+
+        <!-- 編集中3と編集外3 -->
+        <a onclick="toggleOverlay(this, '3')">
+            <img src="https://i.gyazo.com/a88fdba9be0675da2590eea13fcd7cec.jpg" alt="編集外3" />
+            <img src="https://i.gyazo.com/1494c318f1661310180032aaa1f43348.jpg" alt="編集中3" class="overlay" />
+        </a>
+
+        <!-- 編集中4と編集外4 -->
+        <a onclick="toggleOverlay(this, '4')">
+            <img src="https://i.gyazo.com/9d7ba497bc25394cd0bf355f0f020375.jpg" alt="編集外4" />
+            <img src="https://i.gyazo.com/e1bd4dead40e36d76d19a3427a908d0f.jpg" alt="編集中4" class="overlay" />
+        </a>
+
+        <!-- 編集中5と編集外5 -->
+        <a onclick="toggleOverlay(this, '5')">
+            <img src="https://i.gyazo.com/2c2976828531bfd1e45ae762257c4bff.jpg" alt="編集外5" />
+            <img src="https://i.gyazo.com/c27c31173e7ca327ac282f45eeb4c2e8.jpg" alt="編集中5" class="overlay" />
+        </a>
+
+        <!-- 編集中6と編集外6 -->
+        <a onclick="toggleOverlay(this, '6')">
+            <img src="https://i.gyazo.com/ea650220e947a257b27a300f9b64b37e.jpg" alt="編集外6" />
+            <img src="https://i.gyazo.com/f8a04c88d84380847ca79c2a36a99e4b.jpg" alt="編集中6" class="overlay" />
+        </a>
+
+        <!-- 編集中7と編集外7 -->
+        <a onclick="toggleOverlay(this, '7')">
+            <img src="https://i.gyazo.com/4836ad0371ac69f7bb395f5c2eda4401.jpg" alt="編集外7" />
+            <img src="https://i.gyazo.com/fce39818b3e9b6d4c677c5b3ceaf3986.jpg" alt="編集中7" class="overlay" />
+        </a>
+    </div>
+
+    <script>
+        function toggleOverlay(clickedElement, id) {
+            const overlays = document.querySelectorAll('.overlay');
+            const leftContainer = document.getElementById('leftContainer');
+            
+            // すべてのオーバーレイを非表示にし、背景をコウテイペンギンに戻す
+            overlays.forEach(overlay => overlay.classList.remove('active'));
+            leftContainer.style.backgroundImage = "url('https://i.gyazo.com/f2fa1813e743dd394f2ae0bd94df1a5e.jpg')";
+
+            // クリックされた要素のオーバーレイを表示する
+            const overlay = clickedElement.querySelector('.overlay');
+            overlay.classList.add('active');
+
+            // 編集外皆森または編集外2が押された場合に背景をコウペンチャンに変更する
+            if (id === '皆森' || id === '2') {
+                leftContainer.style.backgroundImage = "url('https://i.gyazo.com/1845fcd8917fb01d4dba972eae139d6d.jpg')";
+            }
+        }
+    </script>
+</body>
+</html>
